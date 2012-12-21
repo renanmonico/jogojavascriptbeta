@@ -1,0 +1,147 @@
+<html>
+	<head>
+        <title>Jogo javascript</title>
+        <style type="text/css">
+            .sprite 
+            {
+                position: relative;
+                top: 465px;
+                width:35px;
+                height:35px;
+                background-image: url('images/sonicbattle_sonic_sheet.png');
+                background-position:0px -300px;
+                background-repeat: no-repeat;
+                float: right;
+            }
+            
+            .fase 
+            {
+                border:1px solid #000;
+                width:500px;
+                height:500px;
+            }
+        </style>
+        <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var countImg = 0;
+                var sonicMove = 0;
+                var imgPos = 0;
+
+                //                $('body').keyup(function (e) {
+                //                    if (e.which == 37) {
+                //                        apertadoTrintaESete = false;
+                //                    }
+
+                //                    if (e.which == 38) {
+                //                        apertadoTrintaEOito = false;
+                //                    }
+
+                //                    if (!apertadoTrintaESete && apertadoTrintaEOito) {
+                //                        $(this).html('desapertando 37');
+                //                    } else if (!apertadoTrintaEOito && apertadoTrintaESete) {
+                //                        $(this).html('desapertando 38');
+                //                    } else if (!apertadoTrintaESete && !apertadoTrintaEOito) {
+                //                        $(this).html('desapertando 37 e 38');
+                //                    }
+                //                });
+
+                var apertadoTrintaESete = false;
+                var apertadoTrintaEOito = false;
+
+                $('body').keydown(function (e) {
+
+                    //                    if (e.which == 37) {
+                    //                        apertadoTrintaESete = true;
+                    //                    }
+
+                    //                    if (e.which == 38) {
+                    //                        apertadoTrintaEOito = true;
+                    //                    }
+
+                    //                    if (apertadoTrintaESete && !apertadoTrintaEOito) {
+                    //                        $(this).html('apertando 37');
+                    //                    } else if (apertadoTrintaEOito && !apertadoTrintaESete) {
+                    //                        $(this).html('apertando 38');
+                    //                    } else if (apertadoTrintaESete && apertadoTrintaEOito) {
+                    //                        $(this).html('apertando 37 e 38');
+                    //                    }
+
+
+
+                    if (e.which == 37) {
+                        imgPos -= 50;
+
+                        if (countImg == 4) {
+                            imgPos = 0;
+                            countImg = 0;
+                        }
+
+                        $('.sprite').css('background-position', imgPos + 'px -300px')
+                        $('.sprite').css('left', sonicMove + 'px');
+                        countImg++;
+
+                        if (sonicMove > -465) {
+                            sonicMove--;
+                        }
+                    }
+
+                    if (e.which == 39) {
+                        imgPos -= 50;
+
+                        if (countImg == 4) {
+                            imgPos = 0;
+                            countImg = 0;
+                        }
+
+                        $('.sprite').css('background-position', imgPos + 'px -300px')
+                        $('.sprite').css('left', sonicMove + 'px');
+                        countImg++;
+
+                        if (sonicMove < 0) {
+                            sonicMove++;
+                        }
+                    }
+
+                    var countImgPulando = 0
+                    var imgPosPulando = 0
+                    var sonicUp = 465;
+
+
+                    if (e.which == 38) {
+                        imgPos = 0;
+                        imgPosPulando = 0;
+
+                        var intervalo = setInterval(function () {
+
+                            if (countImgPulando > 3) {
+                                sonicUp += 10;
+                            } else {
+                                sonicUp -= 10;
+                            }
+
+                            imgPosPulando -= 50;
+
+                            $('.sprite').css('background-position', imgPosPulando + 'px -600px')
+                            $('.sprite').css('top', sonicUp + 'px');
+
+                            countImgPulando++;
+                            if (countImgPulando > 6) {
+                                $('.sprite').css('top', '465px');
+                                clearInterval(intervalo);
+                            }
+
+                        }, 100);
+
+                        countImgPulando = 0;
+                    }
+                });
+            });
+        </script>
+	</head>
+	<body>
+        <div class="fase">
+            <div class="sprite">&nbsp;</div>
+        </div>
+    </body>
+</html>
