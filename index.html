@@ -49,6 +49,8 @@
                 var apertadoTrintaESete = false;
                 var apertadoTrintaEOito = false;
 
+                var keyboardButton = { setaPraDireta: 37, setaPraEsquerda: 39, setaPraCima: 38 }
+
                 $('body').keydown(function (e) {
 
                     //                    if (e.which == 37) {
@@ -69,7 +71,7 @@
 
 
 
-                    if (e.which == 37) {
+                    if (e.which == keyboardButton.setaPraEsquerda) {
                         imgPos -= 50;
 
                         if (countImg == 4) {
@@ -86,7 +88,7 @@
                         }
                     }
 
-                    if (e.which == 39) {
+                    if (e.which == keyboardButton.setaPraDireta) {
                         imgPos -= 50;
 
                         if (countImg == 4) {
@@ -108,7 +110,7 @@
                     var sonicUp = 465;
 
 
-                    if (e.which == 38) {
+                    if (e.which == keyboardButton.setaPraCima) {
                         imgPos = 0;
                         imgPosPulando = 0;
 
